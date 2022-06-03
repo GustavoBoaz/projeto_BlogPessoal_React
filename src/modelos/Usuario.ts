@@ -1,5 +1,5 @@
 interface Usuario {
-    id?: number| null;
+    id: number;
     nome?: string| null;
     email?: string| null;
     senha?: string| null;
