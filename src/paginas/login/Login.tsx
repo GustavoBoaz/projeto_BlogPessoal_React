@@ -6,11 +6,14 @@ import useLocalStorage from "react-use-localstorage";
 import { login } from "../../servicos/Servicos";
 import Usuario from "../../modelos/Usuario";
 import './Login.css';
+import { useDispatch } from "react-redux";
+import { addToken } from "../../store/tokens/actions";
 
 function Login() {
 
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch();
+    const [token, setToken] = useState('');
     const [idCriador, setIdCriador] = useLocalStorage('id');
 
     const [usuario, setUsuario] = useState<Usuario>(
@@ -49,6 +52,7 @@ function Login() {
     useEffect(() => {
 
         if (token !== '' ) {
+            dispatch(addToken(token));
             navigate('/home');
         }
 

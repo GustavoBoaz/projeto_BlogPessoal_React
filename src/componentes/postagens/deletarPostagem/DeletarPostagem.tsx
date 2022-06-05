@@ -6,13 +6,17 @@ import useLocalStorage from 'react-use-localstorage';
 import Postagem from '../../../modelos/Postagem';
 import { buscaId, deleteId } from '../../../servicos/Servicos';
 import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function DeletarPostagem() {
 
     let navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
-    const [token, setToken] = useLocalStorage('token');
     const [post, setPosts] = useState<Postagem>()
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+      );
 
     useEffect(() => {
         if (token == "") {
