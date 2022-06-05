@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, Grid, Button } from '@material-ui/core';
 import { Box } from "@mui/material";
 import './Home.css';
 import TabPostagem from "../../componentes/postagens/tabpostagem/TabPostagem";
 import ModalPostagem from "../../componentes/postagens/modalPostagem/ModalPostagem";
+import useLocalStorage from "react-use-localstorage";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+  let navigate = useNavigate();
+  const [token, setToken] = useLocalStorage('token');
+
+  useEffect(() => {
+    if (token === null) {
+      navigate('/login');
+    }
+
+  }, [token]);
+
   return (
     <>
       <Grid container direction="row" justifyContent="center" alignItems="center" className='caixa'>
