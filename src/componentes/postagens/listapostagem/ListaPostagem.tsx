@@ -40,6 +40,16 @@ function ListaPostagem() {
 
     }, [posts.length])
 
+    if (posts.length < 1) {
+        return (
+            <>
+                <h1>
+                    Não possui nenhuma postagem
+                </h1>
+            </>
+        );
+    }
+    
     return (
         <>
             {
